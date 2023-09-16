@@ -22,19 +22,19 @@ public class Produto {
 
 	//Alt+SHIFT+S >> Generate Getters and Setters
 	
-	public int getId() {
+	public int getId() {//id , leitura
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(int id) {//id, escrito
 		this.id = id;
 	}
 
-	public String getNome() {
+	public String getNome() {//nome, permite a leitura
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome) {//nome, permite a escrita
 		this.nome = nome;
 	}
 
