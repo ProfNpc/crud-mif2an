@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Produto</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>Produto</h1>
+	
+		<form action="/produto/novo" method="post">
+		
+			<input type="hidden" name="id" th:value="${produto.id}"> <br>
+	
+			<span for="nome">Nome:</span>
+			<input type="text" name="nome" th:value="${produto.nome}"> <br>
+			
+			<span for="descricao">Descrição:</span>
+			<input type="text" name="descricao" th:value="${produto.descricao}"> <br>
+			
+			<span for="preco">Preço:</span>
+			<input type="text" name="preco" th:value="${produto.preco}"> <br>
+			
+			<input type="submit" value="Salvar">
+		</form>
+		
+	</body>
+</html>

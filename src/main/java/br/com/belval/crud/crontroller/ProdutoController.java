@@ -2,6 +2,7 @@ package br.com.belval.crud.crontroller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,17 +20,36 @@ public class ProdutoController {
 	private static int proxId = 1;
 
 	@GetMapping("/produto/novo")
-	public String novo() {
-		return "novo-produto";
+	public String novo(Model model) {
+		model.addAttribute("produto", new Produto());
+		return "produto";
+	}
+	
+	@GetMapping("/produto/{id}/edit")
+	public String editar(@PathVariable int id, Model model) {
+		
+		Produto produto = buscarPorId(id);
+		
+		if (produto == null) {
+			return "produto-nao-encontrado";
+		}
+		
+		model.addAttribute("produto", produto);
+		
+		return "produto";
 	}
 	
 	@PostMapping("/produto/novo")
 	public ModelAndView novo(Produto produto) {
 		ModelAndView modelAndView = new ModelAndView("novo-produto-criado");
 		
-		produto.setId(proxId++);
-		
-		lista.add(produto);
+		if (produto.getId() == 0) {
+			produto.setId(proxId++);
+			lista.add(produto);
+		} else {
+			ListIterator<Produto> it = lista.listIterator();
+			
+		}
 		
 		modelAndView.addObject("novoProduto", produto);
 		return modelAndView;
@@ -66,6 +86,6 @@ public class ProdutoController {
 	}
 	
 	
-	
+
 	
 }
