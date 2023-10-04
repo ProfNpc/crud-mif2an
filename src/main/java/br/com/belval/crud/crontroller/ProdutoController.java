@@ -44,15 +44,29 @@ public class ProdutoController {
 		ModelAndView modelAndView = new ModelAndView("novo-produto-criado");
 		
 		if (produto.getId() == 0) {
-			produto.setId(proxId++);
-			lista.add(produto);
+			insert(produto);
 		} else {
-			ListIterator<Produto> it = lista.listIterator();
-			
+			update(produto);
 		}
 		
 		modelAndView.addObject("novoProduto", produto);
 		return modelAndView;
+	}
+
+	private void insert(Produto produto) {
+		produto.setId(proxId++);
+		lista.add(produto);
+	}
+
+	private void update(Produto produto) {
+		ListIterator<Produto> it = lista.listIterator();
+		while(it.hasNext()) {
+			Produto encontrado = it.next();
+			if (encontrado.getId() == produto.getId()) {
+				it.remove();
+				it.add(produto);
+			}
+		}
 	}
 
 	@GetMapping("/produto/list")
