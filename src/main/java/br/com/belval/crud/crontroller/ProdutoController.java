@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.belval.crud.model.Produto;
 
@@ -40,16 +41,17 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/produto/novo")
-	public ModelAndView novo(Produto produto) {
-		ModelAndView modelAndView = new ModelAndView("novo-produto-criado");
+	public ModelAndView novo(Produto produto, RedirectAttributes redirectAttributes) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/produto/list");
 		
 		if (produto.getId() == 0) {
 			insert(produto);
+			redirectAttributes.addFlashAttribute("msg","Novo produto criado!");
 		} else {
 			update(produto);
+			redirectAttributes.addFlashAttribute("msg","Produto atualizado!");
 		}
 		
-		modelAndView.addObject("novoProduto", produto);
 		return modelAndView;
 	}
 
