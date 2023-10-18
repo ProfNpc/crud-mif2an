@@ -101,7 +101,20 @@ public class ProdutoController {
 		return encontrou;
 	}
 	
-	
+	@GetMapping("/produto/{id}/excluir")
+	public String excluir(@PathVariable int id, RedirectAttributes redirectAttributes) {
+		ListIterator<Produto> it = lista.listIterator();
+		while(it.hasNext()) {
+			Produto encontrado = it.next();
+			if (encontrado.getId() == id) {
+				it.remove();
+				redirectAttributes.addFlashAttribute("msg","Produto excluído!");
+				break;
+			}
+		}
+		
+		return "redirect:/produto/list";
+	}
 
 	
 }

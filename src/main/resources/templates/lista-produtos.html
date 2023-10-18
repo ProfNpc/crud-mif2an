@@ -23,6 +23,7 @@
 				<th>Nome</th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 			<tr th:each="prod : ${produtos}">
 				<td>
@@ -36,6 +37,9 @@
 				</td>
 				<td>
 					<a th:href="@{/produto/{id}/edit (id=${prod.id}) }">Editar</a>
+				</td>
+				<td>
+					<a th:href="@{/produto/{id}/excluir (id=${prod.id})}">Excluir</a>
 				</td>
 			</tr>
 		</table>
