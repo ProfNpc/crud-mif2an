@@ -56,7 +56,7 @@ public class ProdutoController {
 
 	@GetMapping("/produto/list")
 	public String list(Model model) {
-		model.addAttribute("produtos", repository.findAll());
+		model.addAttribute("produtos", repository.findByAtivo(true));
 		return "lista-produtos";
 	}
 	
@@ -74,7 +74,10 @@ public class ProdutoController {
 
 	@GetMapping("/produto/{id}/excluir")
 	public String excluir(@PathVariable int id, RedirectAttributes redirectAttributes) {
-		repository.deleteById(id);
+		//repository.deleteById(id);
+		Produto produto = repository.findById(id);
+		produto.setAtivo(false);
+		repository.save(produto);
 		
 		redirectAttributes.addFlashAttribute("msg","Produto excluído!");
 		

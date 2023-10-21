@@ -14,6 +14,7 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private double preco;
+	private boolean ativo = true;
 	
 	//Alt+SHIFT+S >> Generate Constructor from Superclass
 	
@@ -62,10 +63,19 @@ public class Produto {
 		this.preco = preco;
 	}
 
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	//Alt+SHIFT+S >> Generate toString()
 	
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + "]";
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + ", ativo="
+				+ ativo + "]";
 	}
 }
