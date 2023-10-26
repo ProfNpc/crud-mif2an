@@ -1,9 +1,11 @@
 package br.com.belval.crud.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Produto {
@@ -14,6 +16,10 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private double preco;
+	
+	@ManyToOne
+	private TipoProduto tipo;
+	
 	private boolean ativo = true;
 	
 	//Alt+SHIFT+S >> Generate Constructor from Superclass
@@ -71,11 +77,21 @@ public class Produto {
 		this.ativo = ativo;
 	}
 
-	//Alt+SHIFT+S >> Generate toString()
+	public TipoProduto getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoProduto tipo) {
+		this.tipo = tipo;
+	}
+
 	
+	//Alt+SHIFT+S >> Generate toString()
+
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + ", ativo="
-				+ ativo + "]";
-	}
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + ", tipo="
+				+ tipo + ", ativo=" + ativo + "]";
+	}	
+
 }
